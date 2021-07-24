@@ -2,13 +2,15 @@ from django.shortcuts import render, get_object_or_404, redirect
 import requests
 from .models import Movie, Staff, Comment
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator
+
 # Create your views here.
 def home(request):
-    return render(request, 'home.html')
-
-def index(request, ):
-    return render(request, 'index.html')
-
+    movies = Movie.objects.order_by('-release_date')
+    paginator = Paginator(movies, 8)
+    page = request.GET.get('page')
+    paginated_movies = paginator.get_page(page)
+    return render(request, 'home.html', {'movies': paginated_movies})
 
 def init_db(request):
     url = "http://3.36.240.145:3479/mutsa"
@@ -23,7 +25,7 @@ def init_db(request):
         new_movie.title_eng = movie['title_eng']
         new_movie.poster_url = movie['poster_url']
         new_movie.rating_aud = movie['rating_aud']
-        new_movie.rating_cri = movie['rating_cri']
+        new_movie.rating_crir = movie['rating_cri']
         new_movie.rating_net = movie['rating_net']
         new_movie.genre = movie['genre']
         new_movie.showtimes = movie['showtimes']
@@ -41,7 +43,7 @@ def init_db(request):
             new_staff.role = staff["role"]
             new_staff.image_url = staff["image_url"]
             new_staff.save()
-
+        
     return redirect('home')
 
 def detail(request, id):
