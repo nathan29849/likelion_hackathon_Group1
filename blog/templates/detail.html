@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div>
+<div><h1>{{movie.title_kor}}</h1></div>
+<div><p>{{movie.title_eng}}</p></div>
+</div>
+<div>
+    <div>
+        <div>{{movie.poster_url}}</div> 
+    </div>
+    <div>
+        <div><span>관람객 평점</span><span>   {{movie.rating_aud}} 점</span></div>
+        <div><span>평론가 평점</span><span>   {{movie.rating_cri}} 점</span></div>
+        <div><span>네티즌 평점</span><span>   {{movie.rating_net}} 점</span></div>
+        <br>
+        <br>
+        <div><span>장르</span><span>   {{movie.genre}}</span></div>
+        <div><span>상영 시간</span><span>   {{movie.showtimes}}</span></div>
+        <div><span>상영 등급</span><span>   {{movie.release_date}}</span></div>
+        <div><span>개봉일</span><span>   {{movie.rate}} 개봉</span></div>
+        <br>
+        <br>
+        <div>
+            <span>줄거리</span>
+            <br>
+            {{movie.summary}}
+        </div>
+    </div>
+</div>
+<div>
+    {% for staff in movie.staffs.all %}
+    <div>
+        <div><img src="{{staff.image_url}}" alt="스태프 이미지"></div>
+        <br>
+        <div>{{staff.role}}</div>
+        <br>
+        <div>{{staff.name}}</div>
+    </div>
+    {% endfor %}
+</div>
+
+{% if user.is_authenticated %}
+<div>
+    <div><span>한줄평</span></div>
+    <br>
+    <form method="POST" action="{% url 'blog:newreply' %}">
+        {% csrf_token %}
+        <input type="hidden" value="{{movie.id}}" name="movie" />
+        <input type="hidden" value="{{user.username}}" name="user" />
+        <input id="put_comments" type="text" name="comment_body" />
+        <button type="submit" class="btn btn-secondary">작성</button>
+      </form>
+</div>
+<div>
+    {% for comment in movie.comments.all %}
+    <div>
+        <p>{{comment.comment_body}}</p>
+        <p><img src="" alt="사람 상반신 이미지">{{comment.user.username}}</p>
+        {% if comment.user == user %}
+        <a href="{% url 'blog:replydelete' comment.id %}"
+          ><input type="button" value="delete"
+        /></a>
+        {% endif %}
+    </div>
+    
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock %}

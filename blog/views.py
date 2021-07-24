@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 import requests
 from .models import Movie, Staff, Comment
+from django.contrib.auth.models import User
 from django.core.paginator import Paginator
+
 # Create your views here.
 def home(request):
     movies = Movie.objects.order_by('-release_date')
@@ -41,5 +43,32 @@ def init_db(request):
             new_staff.role = staff["role"]
             new_staff.image_url = staff["image_url"]
             new_staff.save()
-
+        
     return redirect('home')
+
+def detail(request, id):
+    movie = get_object_or_404(Movie, pk=id)
+    return render(request, 'detail.html', {"movie": movie})
+
+
+def newreply(request):
+    if request.method == "POST":
+        comment = Comment()
+        comment.comment_body = request.POST['comment_body']
+        comment.movie = Movie.objects.get(pk = request.POST['movie'])
+        user = request.POST['user']
+        if user:
+            comment.user = User.objects.get(username=user)
+        else:
+            return redirect('account:login')    # 로그인 창으로 이동
+        comment.save()
+
+        return redirect("blog:detail", comment.movie.id)
+    else:
+        return redirect('home')
+
+def replydelete(request, id):       # comment.id 받아옴
+    comment = get_object_or_404(Comment, pk=id)
+    movie_id = comment.movie.id
+    comment.delete()
+    return redirect('blog:delete', movie_id)
