@@ -6,5 +6,8 @@ from . import views
 app_name="blog"
 
 urlpatterns = [
-    path('db', views.init_db, name="db"),
+    path('<int:id>/', views.detail, name="detail"),
+    path('newreply', views.newreply, name="newreply"),
+    path('replydelete/<int:id>', views.replydelete, name="replydelete"),
+    
 ]
