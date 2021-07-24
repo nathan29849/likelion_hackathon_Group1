@@ -9,7 +9,7 @@ class Movie(models.Model):
     rating_cri = models.CharField(max_length=10)
     rating_net = models.CharField(max_length=10)
     genre = models.CharField(max_length=50)
-    showtime = models.CharField(max_length=50)
+    showtimes = models.CharField(max_length=50)
     release_date = models.CharField(max_length=50)
     rate = models.CharField(max_length=50)
     summary = models.TextField()
