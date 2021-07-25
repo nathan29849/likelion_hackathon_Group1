@@ -102,6 +102,6 @@ def search(request):
     paginator = Paginator(movies, 8)
     page = request.GET.get('page')
     paginated_movies = paginator.get_page(page)
-    return render(request, 'home.html', {'movies': paginated_movies})
+    return render(request, 'home.html', {'movies': paginated_movies, 'keyword': keyword})
 
 
