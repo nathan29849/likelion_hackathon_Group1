@@ -207,16 +207,17 @@
                                 <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'blog:detail' movies.7.id %}">상세 정보</a></div>
                             </div>
                         </div>
-                        {% if movies.has_previous %}
-                            <a href="?page=1">◀️◀️</a>
-                            <a href="?page={{movies.previous_page_number}}">◀️</a>
-                        {% endif %}
-                        {% if movies.has_next %}
-                        <a href="?page={{movies.next_page_number}}">▶️</a>
-                        <a href="?page={{movies.paginator.num_pages}}">▶️▶️</a>
-                        {% endif %}
                     </div>
                 </div>
+                {% if movies.has_previous %}
+                    <a href="?page=1">◀️◀️</a>
+                    <a href="?page={{movies.previous_page_number}}">◀️</a>
+                {% endif %}
+                {{movies.number}} of {{movies.paginator.num_pages}}
+                {% if movies.has_next %}
+                    <a href="?page={{movies.next_page_number}}">▶️</a>
+                    <a href="?page={{movies.paginator.num_pages}}">▶️▶️</a>
+                {% endif %}
             </div>
         </section>
         <!-- Footer-->
