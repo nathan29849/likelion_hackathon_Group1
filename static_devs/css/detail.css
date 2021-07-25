@@ -41,3 +41,66 @@
 #light_summary{
     font-size: medium;
 }
+
+#comment-btn{
+    background-color: lightblue;
+    color:black;
+    font-weight: bold;
+}
+
+#comment-btn:hover{
+    background-color: black;
+    color: lightblue;
+}
+
+.comment-body{
+    text-align: center;
+}
+
+.comment-body2{
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#user-img{
+    width: 35px;
+    height: 35px;
+
+}
+
+.comment-box{
+    display: flex;
+    width: 60%;
+    
+}
+
+#comment-title{
+    font-weight: bold;
+    font-size: 30px;
+    color: lightblue;
+
+}
+
+#put_comments{
+    width: 33%;
+}
+
+.username{
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.userbox{
+    width: 200px;
+}
+.comment{
+    width: 700px;
+}
+
+.line{
+    width:40%;
+    background-color: black;
+    height: 2px;
+}

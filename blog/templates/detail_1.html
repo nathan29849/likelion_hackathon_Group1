@@ -81,31 +81,42 @@
                 </div>
             </div>
         </section>
+        <section class="py-5 bg-secondary" >
         {% if user.is_authenticated %}
-            <div>
-                <div><span>한줄평</span></div>
+            <div class="comment-body">
+                <div id="comment-title"><span>Comments</span></div>
                 <br>
                 <form method="POST" action="{% url 'blog:newreply' %}">
                     {% csrf_token %}
                     <input type="hidden" value="{{movie.id}}" name="movie" />
                     <input type="hidden" value="{{user.username}}" name="user" />
                     <input id="put_comments" type="text" name="comment_body" />
-                    <button type="submit" class="btn btn-secondary">작성</button>
+                    <button type="submit" class="btn btn-secondary" id="comment-btn">작성</button>
                 </form>
             </div>
             <div>
+            </section>
+            <br>
+            <div class="comment-body2">
                 {% for comment in movie.comments.all %}
-                <div>
-                    <p>{{comment.comment_body}}</p>
-                    <p><img src="" alt="사람 상반신 이미지">{{comment.user.username}}</p>
+
+                <div class="comment-box">
+
+                        <div class="userbox"><img src="{% static 'img/github.png' %}" alt="사람 상반신 이미지" id="user-img"><span class="username">{{comment.user.username}}</span></div>
+                        <div class="comment">{{comment.comment_body}}</div>
                     {% if comment.user == user %}
                     <a href="{% url 'blog:replydelete' comment.id %}"
-                    ><input type="button" value="delete"
+                    ><input type="button" value="X"
                     /></a>
                     {% endif %}
+
                 </div>
+                <div class="line"></div>
+                <br>
                 
                 {% endfor %}
             </div>
+            </div>
         {% endif %}
+
         {% endblock %}

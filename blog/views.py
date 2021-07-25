@@ -94,7 +94,7 @@ def replydelete(request, id):       # comment.id 받아옴
     comment = get_object_or_404(Comment, pk=id)
     movie_id = comment.movie.id
     comment.delete()
-    return redirect('blog:delete', movie_id)
+    return redirect('blog:detail', movie_id)
 
 def search(request):
     keyword = request.GET.get('keyword')
