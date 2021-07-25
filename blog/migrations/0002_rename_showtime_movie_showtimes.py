@@ -9,10 +9,4 @@ class Migration(migrations.Migration):
         ('blog', '0001_initial'),
     ]
 
-    operations = [
-        migrations.RenameField(
-            model_name='movie',
-            old_name='showtime',
-            new_name='showtimes',
-        ),
-    ]
+   
