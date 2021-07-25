@@ -14,6 +14,9 @@ class Movie(models.Model):
     rate = models.CharField(max_length=50)
     summary = models.TextField()
 
+    def light_summary(self):
+        return self.summary[:400]
+
 class Staff(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name="staffs")
     name = models.CharField(max_length=50)
