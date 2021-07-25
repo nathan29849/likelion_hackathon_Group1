@@ -80,3 +80,12 @@ def replydelete(request, id):       # comment.id 받아옴
     comment.delete()
     return redirect('blog:delete', movie_id)
 
+def search(request):
+    keyword = request.GET.get('keyword')
+    movies = Movie.objects.filter(title_kor__contains=keyword)
+    paginator = Paginator(movies, 8)
+    page = request.GET.get('page')
+    paginated_movies = paginator.get_page(page)
+    return render(request, 'home.html', {'movies': paginated_movies})
+
+
