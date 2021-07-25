@@ -1,9 +1,74 @@
 {% extends 'base.html' %}
 {% block content %}
-<form action="{% url 'account:signup'%}" method="POST">
+<style>
+.form{
+  display:flex;
+  flex-direction:row;
+  width:300px;
+  height:30px;
+  align-items:center;
+  margin-left:auto;
+  margin-right:auto;
+  padding-top:200px;
+  
+}
+.input{
+  display:flex;
+  flex-direction:column;
+}
+
+.username, .password{
+
+  margin:10px;
+
+}
+
+.button{
+display:flex;
+margin:5px;
+padding-top:30px;
+padding-bottom:30px;
+padding-left:5px;
+padding-right:5px;
+align-items: flex-start;
+background-color: rgba(0, 0, 0, 0);
+border-bottom-color: rgb(33, 37, 41);
+border-bottom-left-radius: 4px;
+border-bottom-right-radius: 4px;
+border-bottom-style: solid;
+border-bottom-width: 1px;
+border-image-outset: 0px;
+border-image-repeat: stretch;
+border-image-slice: 100%;
+border-image-source: none;
+border-image-width: 1;
+border-left-color: rgb(33, 37, 41);
+border-left-style: solid;
+border-left-width: 1px;
+border-right-color: rgb(33, 37, 41);
+border-right-style: solid;
+border-right-width: 1px;
+border-top-color: rgb(33, 37, 41);
+border-top-left-radius: 4px;
+border-top-right-radius: 4px;
+border-top-style: solid;
+border-top-width: 1px;
+box-sizing: border-box;
+
+}
+
+.button:hover{background-color:black;
+color:white;}
+
+</style>
+<section class="sign-up" style="min-height:400px;">
+<form class="form" action="{% url 'account:signup'%}" method="POST">
 {%csrf_token%}
-<input name = "username" type="text" placeholder="아이디를 입력하세요"> 
-<input name = "password" type="password" placeholder="비밀번호를 입력하세요"> 
-<button type="submit">가입하기</button>
+<div class="input">
+<input class="username" size="10" name = "username" type="text" placeholder="아이디를 입력하세요"> 
+<input class="password" name = "password" type="password" placeholder="비밀번호를 입력하세요">
+</div>
+<button class="button" type="submit">회원가입</button>
 </form>
+</section>
 {% endblock %}

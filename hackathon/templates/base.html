@@ -48,12 +48,13 @@
                     </form>
                     {% else %}
                     <form class="d-flex" action="{% url 'account:login' %}">
-                        <button class="btn btn-outline-dark" type="submit">
+                        <button style="margin:5px;" class="btn btn-outline-dark" type="submit">
                             
                             로그인
+                            
                         </button>
                     </form>
-                    <form class="d-flex" action="{% url 'account:signup' %}">
+                    <form style="margin:5px;" class="d-flex" action="{% url 'account:signup' %}">
                         <button class="btn btn-outline-dark" type="submit">
                             
                             회원가입
