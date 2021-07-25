@@ -16,14 +16,19 @@
                                     <!-- Product name-->
                                     <h5 class="fw-bolder">{{movie.title_kor}}</h5>
                                     <!-- Product price-->
-                                    <div class="d-flex justify-content-center small text-warning mb-2">
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                    </div>
-                                    {{movie.rating_aud}} / 10
+                                    {% if movie.rating_aud %}
+                                        <div class="d-flex justify-content-center small text-warning mb-2">
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                        </div>
+                                        {{movie.rating_aud}} / 10
+                                    {% else %}
+                                        No Rating
+                                    {% endif %}
+
                                 </div>
                             </div>
                             <!-- Product actions-->
