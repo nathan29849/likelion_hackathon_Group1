@@ -12,6 +12,13 @@ def home(request):
     paginated_movies = paginator.get_page(page)
     return render(request, 'home.html', {'movies': paginated_movies})
 
+def rate(request, rate):
+    movies = Movie.objects.filter(rate=rate)
+    paginator = Paginator(movies, 8)
+    page = request.GET.get('page')
+    paginated_movies = paginator.get_page(page)
+    return render(request, 'home.html', {'movies': paginated_movies})
+
 def init_db(request):
     url = "http://3.36.240.145:3479/mutsa"
     res = requests.get(url)
@@ -24,10 +31,26 @@ def init_db(request):
         new_movie.title_kor = movie["title_kor"]
         new_movie.title_eng = movie['title_eng']
         new_movie.poster_url = movie['poster_url']
-        new_movie.rating_aud = movie['rating_aud']
-        new_movie.rating_crir = movie['rating_cri']
-        new_movie.rating_net = movie['rating_net']
-        new_movie.genre = movie['genre']
+        print(len(movie['rating_cri']))
+        if len(movie['rating_aud']) > 2:
+            new_movie.rating_aud = movie['rating_aud']
+        else:
+            new_movie.rating_aud = "준비중"
+
+        if len(movie['rating_cri']) > 2:
+            new_movie.rating_cri = movie['rating_cri']
+        else:
+            new_movie.rating_cri = "준비중"
+        
+        if len(movie['rating_net']) > 2:
+            new_movie.rating_net = movie['rating_net']
+        else:
+            new_movie.rating_net = "준비중"
+
+        if len(movie['genre']) > 2:
+            new_movie.genre = movie['genre']
+        else:
+            new_movie.genre = "준비중"            
         new_movie.showtimes = movie['showtimes']
         new_movie.release_date = movie['release_date']
         new_movie.rate = movie['rate']
@@ -72,3 +95,13 @@ def replydelete(request, id):       # comment.id 받아옴
     movie_id = comment.movie.id
     comment.delete()
     return redirect('blog:delete', movie_id)
+
+def search(request):
+    keyword = request.GET.get('keyword')
+    movies = Movie.objects.filter(title_kor__contains=keyword)
+    paginator = Paginator(movies, 8)
+    page = request.GET.get('page')
+    paginated_movies = paginator.get_page(page)
+    return render(request, 'home.html', {'movies': paginated_movies})
+
+
