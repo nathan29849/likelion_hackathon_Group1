@@ -9,5 +9,6 @@ urlpatterns = [
     path('<int:id>/', views.detail, name="detail"),
     path('newreply', views.newreply, name="newreply"),
     path('replydelete/<int:id>', views.replydelete, name="replydelete"),
-    
+    path('rate/<str:rate>', views.rate, name="rate"),
+    path('search', views.search, name="search"),
 ]

@@ -12,6 +12,13 @@ def home(request):
     paginated_movies = paginator.get_page(page)
     return render(request, 'home.html', {'movies': paginated_movies})
 
+def rate(request, rate):
+    movies = Movie.objects.filter(rate=rate)
+    paginator = Paginator(movies, 8)
+    page = request.GET.get('page')
+    paginated_movies = paginator.get_page(page)
+    return render(request, 'home.html', {'movies': paginated_movies})
+
 def init_db(request):
     url = "http://3.36.240.145:3479/mutsa"
     res = requests.get(url)
@@ -72,3 +79,13 @@ def replydelete(request, id):       # comment.id 받아옴
     movie_id = comment.movie.id
     comment.delete()
     return redirect('blog:delete', movie_id)
+
+def search(request):
+    keyword = request.GET.get('keyword')
+    movies = Movie.objects.filter(title_kor__contains=keyword)
+    paginator = Paginator(movies, 8)
+    page = request.GET.get('page')
+    paginated_movies = paginator.get_page(page)
+    return render(request, 'home.html', {'movies': paginated_movies})
+
+
