@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="{% url 'account:signup'%}" method="POST">
+{%csrf_token%}
+<input name = "username" type="text" placeholder="아이디를 입력하세요"> 
+<input name = "password" type="password" placeholder="비밀번호를 입력하세요"> 
+<button type="submit">가입하기</button>
+</form>
+{% endblock %}
