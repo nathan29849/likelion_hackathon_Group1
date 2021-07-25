@@ -48,7 +48,7 @@ def init_db(request):
 
 def detail(request, id):
     movie = get_object_or_404(Movie, pk=id)
-    return render(request, 'detail.html', {"movie": movie})
+    return render(request, 'detail_1.html', {"movie": movie})
 
 
 def newreply(request):
