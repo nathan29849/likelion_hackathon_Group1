@@ -2,6 +2,20 @@
 {% load static %}
 {% block content %}
         <!-- Section-->
+        <header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">Movie Reviews</h1>
+                    <p class="lead fw-normal text-white-50 mb-0">Search movies now in theater</p>
+                    <p>
+                        <form action="{% url 'blog:search' %}" method="GET">
+                            <input placeholder="영화 제목" type="search" name="keyword">
+                            <button class="btn btn-outline-light" type="submit">검색</button>
+                        </form>
+                    </p>
+                </div>
+            </div>
+        </header>
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
@@ -16,14 +30,19 @@
                                     <!-- Product name-->
                                     <h5 class="fw-bolder">{{movie.title_kor}}</h5>
                                     <!-- Product price-->
-                                    <div class="d-flex justify-content-center small text-warning mb-2">
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                    </div>
-                                    {{movie.rating_aud}} / 10
+                                    {% if movie.rating_aud %}
+                                        <div class="d-flex justify-content-center small text-warning mb-2">
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                        </div>
+                                        {{movie.rating_aud}} / 10
+                                    {% else %}
+                                        No Rating
+                                    {% endif %}
+
                                 </div>
                             </div>
                             <!-- Product actions-->

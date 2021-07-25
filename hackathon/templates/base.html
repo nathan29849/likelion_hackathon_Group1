@@ -34,6 +34,8 @@
                                 <li><a class="dropdown-item" href="{% url 'blog:rate' '15세 관람가' %}">15세 관람가</a></li>
                                 <li><hr class="dropdown-divider" /></li>
                                 <li><a class="dropdown-item" href="{% url 'blog:rate' '청소년 관람불가' %}">청소년 관람불가</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="{% url 'blog:rate' 'NR' %}">미분류</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -66,20 +68,7 @@
             </div>
         </nav>
         <!-- Header-->
-        <header class="bg-dark py-5">
-            <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">Movie Reviews</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">Search movies now in theater</p>
-                    <p>
-                        <form action="{% url 'blog:search' %}" method="GET">
-                            <input placeholder="영화 제목" type="search" name="keyword">
-                            <button class="btn btn-outline-light" type="submit">검색</button>
-                        </form>
-                    </p>
-                </div>
-            </div>
-        </header>
+
         <!-- Section-->
         {% block content %}
         
