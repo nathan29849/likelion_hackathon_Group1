@@ -24,10 +24,26 @@ def init_db(request):
         new_movie.title_kor = movie["title_kor"]
         new_movie.title_eng = movie['title_eng']
         new_movie.poster_url = movie['poster_url']
-        new_movie.rating_aud = movie['rating_aud']
-        new_movie.rating_crir = movie['rating_cri']
-        new_movie.rating_net = movie['rating_net']
-        new_movie.genre = movie['genre']
+        print(len(movie['rating_cri']))
+        if len(movie['rating_aud']) > 2:
+            new_movie.rating_aud = movie['rating_aud']
+        else:
+            new_movie.rating_aud = "준비중"
+
+        if len(movie['rating_cri']) > 2:
+            new_movie.rating_cri = movie['rating_cri']
+        else:
+            new_movie.rating_cri = "준비중"
+        
+        if len(movie['rating_net']) > 2:
+            new_movie.rating_net = movie['rating_net']
+        else:
+            new_movie.rating_net = "준비중"
+
+        if len(movie['genre']) > 2:
+            new_movie.genre = movie['genre']
+        else:
+            new_movie.genre = "준비중"            
         new_movie.showtimes = movie['showtimes']
         new_movie.release_date = movie['release_date']
         new_movie.rate = movie['rate']
