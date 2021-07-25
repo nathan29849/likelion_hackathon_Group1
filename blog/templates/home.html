@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load mathfilters %}
 {% block content %}
+{% autoescape off %}
         <!-- Section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
@@ -15,14 +17,29 @@
                                     <!-- Product name-->
                                     <h5 class="fw-bolder">{{movies.0.title_kor}}</h5>
                                     <!-- Product price-->
-                                    <div class="d-flex justify-content-center small text-warning mb-2">
+                                    <div class="d-flex justify-content-center small text-warning mb-2 review">
+
+                                        {%if movies.0.rating_aud|add:0 > 2 %}
                                         <div class="bi-star-fill"></div>
+                                        {%endif%}
+                                        {%if movies.0.rating_aud > 4%}
                                         <div class="bi-star-fill"></div>
+                                        {%endif%}
+                                        {%if movies.0.rating_aud > 6%}
                                         <div class="bi-star-fill"></div>
+                                        {%endif%}
+                                        {%if movies.0.rating_aud > 8%}
                                         <div class="bi-star-fill"></div>
+                                        {%endif%}
+                                        {%if movies.0.rating_aud > 10%}
                                         <div class="bi-star-fill"></div>
+                                        {%endif%}
+                                    {%endautoescape%}
                                     </div>
-                                    {{movies.0.rating_aud}} / 10
+                                    <div>
+                                       
+                                        {{movies.0.rating_aud|sub:0}}
+                                    </div>
                                 </div>
                             </div>
                             <!-- Product actions-->
@@ -34,7 +51,7 @@
                     <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Sale badge-->
-                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Hot</div>
                             <!-- Product image-->
                             <img class="card-img-top" src="{{movies.1.poster_url}}" alt="..." />
                             <!-- Product details-->
@@ -44,11 +61,7 @@
                                     <h5 class="fw-bolder">{{movies.1.title_kor}}</h5>
                                     <!-- Product reviews-->
                                     <div class="d-flex justify-content-center small text-warning mb-2">
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
+                                        
                                     </div>
                                     <!-- Product price-->
                                     <span class="text-muted text-decoration-line-through">$20.00</span>
