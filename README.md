@@ -1,4 +1,4 @@
-#Likelion HUFS 9th mini Hackathon![HUFS](https://likelion-badge.herokuapp.com/api/likelion_university_badge/v1?university=HUFS)
+#Likelion HUFS 9th mini Hackathon ![9th](https://likelion-badge.herokuapp.com/api/likelion_shield_badge)
 
 ##Features
 * Check movie audience ratings
@@ -17,6 +17,7 @@ python -m venv venv
 source venv/bin/activate (For Mac)
 source venv/source/activate (For Windows)
 pip install -r requirements.txt
+```
 
 ##Credits
 - [Hanseok Park](https://github.com/nathan29849)
