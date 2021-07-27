@@ -1,6 +1,6 @@
-#Likelion HUFS 9th mini Hackathon ![9th](https://likelion-badge.herokuapp.com/api/likelion_shield_badge)
+# Likelion HUFS 9th mini Hackathon ![9th](https://likelion-badge.herokuapp.com/api/likelion_shield_badge)
 
-##Features
+## Features
 * Check movie audience ratings
 * Search movie by name
 * Check movie catagorized by movie ratings
@@ -19,7 +19,7 @@ source venv/source/activate (For Windows)
 pip install -r requirements.txt
 ```
 
-##Credits
+## Credits
 - [Hanseok Park](https://github.com/nathan29849)
 - [Sangmin Lee](https://github.com/sangmin7648)
 - [Yeonju Lee](https://github.com/430lyj)
