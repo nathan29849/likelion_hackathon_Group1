@@ -66,6 +66,17 @@
                     {% endfor %}
                 </div>
                 <div class="paginations" style="text-align: center;">
+            {%if keyword %}
+                {% if movies.has_previous %}
+                    <a href="?page=1&keyword={{keyword}}" style="text-decoration: none; color:black;">◀️◀️</a>
+                    <a href="?page={{movies.previous_page_number}}&keyword={{keyword}}" style="text-decoration: none; color:black;">◀️</a>
+                {% endif %}
+                {{movies.number}} of {{movies.paginator.num_pages}}
+                {% if movies.has_next %}
+                    <a href="?page={{movies.next_page_number}}&keyword={{keyword}}" style="text-decoration: none; color:black;">▶️</a>
+                    <a href="?page={{movies.paginator.num_pages}}&keyword={{keyword}}" style="text-decoration: none; color:black;">▶️▶️</a>
+                {% endif %}
+            {%else%}
                 {% if movies.has_previous %}
                     <a href="?page=1" style="text-decoration: none; color:black;">◀️◀️</a>
                     <a href="?page={{movies.previous_page_number}}" style="text-decoration: none; color:black;">◀️</a>
@@ -75,6 +86,7 @@
                     <a href="?page={{movies.next_page_number}}" style="text-decoration: none; color:black;">▶️</a>
                     <a href="?page={{movies.paginator.num_pages}}" style="text-decoration: none; color:black;">▶️▶️</a>
                 {% endif %}
+            {%endif%}
                 </div>
             </div>
         </section>
