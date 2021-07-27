@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load mathfilters %}
 {% load static %}
 {% block content %}
         <!-- Section-->
@@ -23,6 +24,7 @@
                     <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Product image-->
+
                             <img class="card-img-top" src="{{movie.poster_url}}" alt="..." />
                             <!-- Product details-->
                             <div class="card-body p-4">
@@ -30,19 +32,29 @@
                                     <!-- Product name-->
                                     <h5 class="fw-bolder">{{movie.title_kor}}</h5>
                                     <!-- Product price-->
-                                    {% if movie.rating_aud %}
+                                    {% if movie.rating_aud|sub:0 > 0 %}
                                         <div class="d-flex justify-content-center small text-warning mb-2">
+                                            {% if movie.int_rating_aud >= 2 %}
                                             <div class="bi-star-fill"></div>
+                                            {%endif%}
+                                            {% if movie.int_rating_aud >= 4 %}
                                             <div class="bi-star-fill"></div>
+                                            {%endif%}
+                                            {% if movie.int_rating_aud >= 6 %}
                                             <div class="bi-star-fill"></div>
+                                            {%endif%}
+                                            {% if movie.int_rating_aud >= 8 %}
                                             <div class="bi-star-fill"></div>
+                                            {%endif%}
+                                            {% if movie.int_rating_aud >= 10 %}
                                             <div class="bi-star-fill"></div>
+                                            {%endif%}
                                         </div>
-                                        {{movie.rating_aud}} / 10
+                                        {{movie.rating_aud|sub:0}} / 10
                                     {% else %}
                                         No Rating
                                     {% endif %}
-
+                                
                                 </div>
                             </div>
                             <!-- Product actions-->
@@ -53,6 +65,7 @@
                     </div>
                     {% endfor %}
                 </div>
+<<<<<<< HEAD
                 {% if keyword %}
                     {% if movies.has_previous %}
                         <a href="?page=1&keyword={{keyword}}">◀️◀️</a>
@@ -63,9 +76,27 @@
                     <a href="?page=1">◀️◀️</a>
                     <a href="?page={{movies.previous_page_number}}">◀️</a>
                     {% endif %}
+=======
+                <div class="paginations" style="text-align: center;">
+            {%if keyword %}
+                {% if movies.has_previous %}
+                    <a href="?page=1&keyword={{keyword}}" style="text-decoration: none; color:black;">◀️◀️</a>
+                    <a href="?page={{movies.previous_page_number}}&keyword={{keyword}}" style="text-decoration: none; color:black;">◀️</a>
+                {% endif %}
+                {{movies.number}} of {{movies.paginator.num_pages}}
+                {% if movies.has_next %}
+                    <a href="?page={{movies.next_page_number}}&keyword={{keyword}}" style="text-decoration: none; color:black;">▶️</a>
+                    <a href="?page={{movies.paginator.num_pages}}&keyword={{keyword}}" style="text-decoration: none; color:black;">▶️▶️</a>
+                {% endif %}
+            {%else%}
+                {% if movies.has_previous %}
+                    <a href="?page=1" style="text-decoration: none; color:black;">◀️◀️</a>
+                    <a href="?page={{movies.previous_page_number}}" style="text-decoration: none; color:black;">◀️</a>
+>>>>>>> 9ca5d614427c61f9e452714016d4c821eae05cb6
                 {% endif %}
 
                 {{movies.number}} of {{movies.paginator.num_pages}}
+<<<<<<< HEAD
 
                 {% if keyword %}
                     {% if movies.has_next %}
@@ -79,6 +110,14 @@
                     {% endif %}
                 {% endif %}
 
+=======
+                {% if movies.has_next %}
+                    <a href="?page={{movies.next_page_number}}" style="text-decoration: none; color:black;">▶️</a>
+                    <a href="?page={{movies.paginator.num_pages}}" style="text-decoration: none; color:black;">▶️▶️</a>
+                {% endif %}
+            {%endif%}
+                </div>
+>>>>>>> 9ca5d614427c61f9e452714016d4c821eae05cb6
             </div>
         </section>
         <!-- Footer-->

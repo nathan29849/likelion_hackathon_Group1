@@ -10,6 +10,10 @@ def home(request):
     paginator = Paginator(movies, 8)
     page = request.GET.get('page')
     paginated_movies = paginator.get_page(page)
+    for movie in paginated_movies:
+        if movie.rating_aud != "준비중":
+            movie.int_rating_aud = round(float(movie.rating_aud))
+            print(movie.int_rating_aud)
     return render(request, 'home.html', {'movies': paginated_movies})
 
 def rate(request, rate):
@@ -17,6 +21,10 @@ def rate(request, rate):
     paginator = Paginator(movies, 8)
     page = request.GET.get('page')
     paginated_movies = paginator.get_page(page)
+    for movie in paginated_movies:
+        if movie.rating_aud != "준비중":
+            movie.int_rating_aud = round(float(movie.rating_aud))
+            print(movie.int_rating_aud)
     return render(request, 'home.html', {'movies': paginated_movies})
 
 def init_db(request):
@@ -102,6 +110,14 @@ def search(request):
     paginator = Paginator(movies, 8)
     page = request.GET.get('page')
     paginated_movies = paginator.get_page(page)
+<<<<<<< HEAD
     return render(request, 'home.html', {'movies': paginated_movies, 'keyword': keyword})
+=======
+    for movie in paginated_movies:
+        if movie.rating_aud != "준비중":
+            movie.int_rating_aud = round(float(movie.rating_aud))
+            print(movie.int_rating_aud)
+    return render(request, 'home.html', {'movies': paginated_movies, 'keyword':keyword})
+>>>>>>> 9ca5d614427c61f9e452714016d4c821eae05cb6
 
 
